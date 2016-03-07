@@ -1,12 +1,14 @@
 from django.contrib.auth import authenticate
 from django.contrib.auth.models import User
 from django.contrib.sites.models import Site
+from django.conf import settings
 from django.db import models
 from socialregistration.models import get_default_site
 from socialregistration.signals import connect
 
+
 class GoogleProfile(models.Model):
-    user = models.ForeignKey(User, unique=True)
+    user = models.OneToOneField(settings.AUTH_USER_MODEL)
     site = models.ForeignKey(Site, default=get_default_site)
     google_id = models.CharField(max_length = 255)
 
@@ -28,7 +30,7 @@ def save_google_token(sender, user, profile, client, **kwargs):
         GoogleAccessToken.objects.get(profile=profile).delete()
     except GoogleAccessToken.DoesNotExist:
         pass
-    
+
     GoogleAccessToken.objects.create(access_token = client.get_access_token(),
         profile = profile)
 
