@@ -41,7 +41,7 @@ class TestFacebook(OAuth2Test, TestCase):
     def callback(self, MockFacebook, MockRequest):
         MockRequest.side_effect = get_mock_func(self.get_callback_mock_response)
         MockFacebook.side_effect = get_mock_func(self.get_facebook_data)
-        response = self.client.get(self.get_callback_url(), {'code': 'abc', 'state': self._state})
+        response = self.client.get(self.get_callback_url(), {'code': 'abc'})
         return response
     
     @mock.patch('socialregistration.clients.oauth.OAuth2.request')
