@@ -8,7 +8,7 @@ from socialregistration.signals import connect, login
 AUTH_USER_MODEL = getattr(settings, 'AUTH_USER_MODEL', 'auth.User')
 
 class FacebookProfile(models.Model):
-    user = models.ForeignKey(AUTH_USER_MODEL, unique=True)
+    user = models.OneToOneField(AUTH_USER_MODEL)
     site = models.ForeignKey(Site, default=get_default_site)
     uid = models.CharField(max_length=255, blank=False, null=False)
 
