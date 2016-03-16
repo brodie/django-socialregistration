@@ -7,7 +7,7 @@ from socialregistration.models import get_default_site
 AUTH_USER_MODEL = getattr(settings, 'AUTH_USER_MODEL', 'auth.User')
 
 class OpenIDProfile(models.Model):
-    user = models.OneToOneField(AUTH_USER_MODEL)
+    user = models.ForeignKey(AUTH_USER_MODEL)
     site = models.ForeignKey(Site, default=get_default_site)
     identity = models.TextField()
 
