@@ -1,8 +1,9 @@
+import importlib
+
 from django.conf import settings
 from django.contrib.auth import authenticate, login
 from django.contrib.auth.models import User
 from django.http import HttpResponseRedirect
-from django.utils import importlib
 from django.utils.translation import ugettext_lazy as _
 from django.views.generic.base import TemplateResponseMixin
 from socialregistration import signals
@@ -32,7 +33,7 @@ class CommonMixin(TemplateResponseMixin):
         """
         Returns a url to redirect to after the login / signup.
         """
-        if 'next' in request.session: 
+        if 'next' in request.session:
             next = request.session['next']
             del request.session['next']
         elif 'next' in request.GET:
@@ -41,9 +42,9 @@ class CommonMixin(TemplateResponseMixin):
             next = request.POST.get('next')
         else:
             next = getattr(settings, 'LOGIN_REDIRECT_URL', '/')
-        
+
         netloc = urlparse.urlparse(next)[1]
-        
+
         if netloc and netloc != request.get_host():
             next = getattr(settings, 'LOGIN_REDIRECT_URL', '/')
 
@@ -203,7 +204,7 @@ class SessionMixin(object):
         for key in ['user', 'profile', 'client']:
             try: del request.session['%s%s' % (SESSION_KEY, key)]
             except KeyError: pass
-        
+
 
 class SignalMixin(object):
     """
