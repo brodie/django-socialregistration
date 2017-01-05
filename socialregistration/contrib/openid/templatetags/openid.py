@@ -25,8 +25,10 @@ def openid_form(parser, token):
         return FormNode(bits[0])
     return FormNode(None)
 
+
 class FormNode(template.Node):
-    def __init__(self, provider, params = []):
+
+    def __init__(self, provider, params=[]):
         self.provider = provider
         self.params = params
 
@@ -42,7 +44,10 @@ class FormNode(template.Node):
             button = None
 
         return template.loader.render_to_string(
-            'socialregistration/openid/form.html',{
+            'socialregistration/openid/form.html',
+            {
                 'provider': provider,
-                'button': button},
-            context_instance = context)
+                'button': button
+            },
+            context.get('request')
+        )

@@ -29,6 +29,5 @@ class ButtonTag(template.Node):
                 "'to your settings.TEMPLATE_CONTEXT_PROCESSORS'"))
 
         button = ''.join([resolve(bit, context) for bit in self.params])
-        
-        return template.loader.render_to_string(self.template_name, {
-                'button': button}, context)
+
+        return template.loader.render_to_string(self.template_name, {'button': button}, context.get('request'))
