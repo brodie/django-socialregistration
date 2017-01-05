@@ -1,5 +1,9 @@
 *.pyc
+*.orig
 .DS_Store
+.tox
+.cache
+.coverage
 
 django_socialregistration.egg-info
 build/
