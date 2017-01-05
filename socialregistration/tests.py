@@ -264,8 +264,8 @@ class OAuth2Test(OAuthTest):
         return response
 
 
-
 class TestContextProcessors(TestCase):
     def test_request_is_in_context(self):
-        self.assertTrue('django.core.context_processors.request' in settings.TEMPLATE_CONTEXT_PROCESSORS)
-
+        # The context_processors move in django >1.8 and are missing from 1.10
+        self.assertTrue(any([('django.core.context_processors.request' in settings.TEMPLATE_CONTEXT_PROCESSORS),
+                             ('django.template.context_processors.request' in settings.TEMPLATE_CONTEXT_PROCESSORS)]))
