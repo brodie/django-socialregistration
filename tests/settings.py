@@ -87,6 +87,7 @@ STATICFILES_FINDERS = (
 # Make this unique, and don't share it with anybody.
 SECRET_KEY = '^@qj2z043lalviucgjjf7sl440^@)u7b^q^h^ik(t@-exze96h'
 
+
 # List of callables that know how to import templates from various sources.
 TEMPLATE_LOADERS = (
     'django.template.loaders.filesystem.Loader',
@@ -96,12 +97,12 @@ TEMPLATE_LOADERS = (
 
 ROOT_URLCONF = 'tests.urls'
 
-TEMPLATE_DIRS = (
+TEMPLATE_DIRS = [
     # Put strings here, like "/home/html/django_templates" or "C:/www/django/templates".
     # Always use forward slashes, even on Windows.
     # Don't forget to use absolute paths, not relative paths.
     '%s/templates' % os.path.dirname(__file__)
-)
+]
 
 INSTALLED_APPS = (
     'django.contrib.auth',
@@ -219,3 +220,16 @@ SOCIALREGISTRATION_GENERATE_USERNAME = False
 
 LOGIN_REDIRECT_URL = '/'
 
+
+TEMPLATES = [
+    {
+        'BACKEND': 'django.template.backends.django.DjangoTemplates',
+        'DIRS': TEMPLATE_DIRS,
+        'OPTIONS': {
+            'context_processors': TEMPLATE_CONTEXT_PROCESSORS,
+            'loaders': TEMPLATE_LOADERS,
+        },
+    },
+]
+
+SESSION_SERIALIZER = 'django.contrib.sessions.serializers.PickleSerializer'
