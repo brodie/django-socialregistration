@@ -8,7 +8,7 @@ from django.utils.translation import ugettext_lazy as _
 from django.views.generic.base import TemplateResponseMixin
 from socialregistration import signals
 from socialregistration.settings import SESSION_KEY
-import urlparse
+
 
 ERROR_VIEW = getattr(settings, 'SOCIALREGISTRATION_ERROR_VIEW_FUNCTION',
     None)

@@ -1,4 +1,3 @@
-{% load url from future %}
 <form action="{% url 'socialregistration:github:redirect' %}" method="post">
     {% csrf_token %}
     {% if next %}
