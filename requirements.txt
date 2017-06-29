@@ -1,3 +1,4 @@
--e git+https://github.com/pythonforfacebook/facebook-sdk#egg=FacebookSDK       
+Django>=1.9.12
+-e git+https://github.com/pythonforfacebook/facebook-sdk#egg=FacebookSDK
 
 

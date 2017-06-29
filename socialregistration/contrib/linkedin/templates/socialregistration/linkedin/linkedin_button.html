@@ -1,4 +1,3 @@
-{% load url from future %}
 <form class="connect-button" name="login" method="post" action="{% url 'socialregistration:linkedin:redirect' %}">
 {% csrf_token %}
 {% if next %}
